@@ -1,1 +1,1 @@
-angular.modular('blocJams', []),
+angular.modular('blocJams', ['ui.router']);
