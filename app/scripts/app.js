@@ -8,6 +8,7 @@
     $stateProvider
          .state('landing', {
              url: '/',
+             controller: 'LandingCtrol as landing',
              templateUrl: '/templates/landing.html'
          })
          .state('album', {
