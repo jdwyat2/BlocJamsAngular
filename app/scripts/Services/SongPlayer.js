@@ -45,6 +45,16 @@
  var getSongIndex = function(song) {
      return currentAlbum.songs.indexOf(song);
  };
+    
+/*
+*@function stopSong
+*@desc This will stop the current buzz object and set playing to null.
+*@object song
+*/
+ var stopSong = function(song){
+     currentBuzzObject.stop();
+     song.playing = null;
+ };
          
 
 /**
@@ -82,15 +92,27 @@ SongPlayer.previous = function() {
     currentSongIndex--;
     
     if (currentSongIndex < 0){
-        currentBuzzObject.stop();
-        SongPlayer.currentSong.playing = null;
+        stopSong(song);
     } else {
         var song = currentAlbum.songs[currentSongIndex];
         setSong(song);
         playSong(song);
     }
 };
-        
+
+/*
+*@scope public
+*@function next
+*@desc Takes in the currently playing song's index and adds 1 to it. 
+*/
+SongPlayer.next = function(){
+    var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+    currentSongIndex++;
+    var song = currentAlbum.songs[currentSongIndex];
+        setSong(song);
+        playSong(song);
+};
+         
          return SongPlayer;
          }
  
