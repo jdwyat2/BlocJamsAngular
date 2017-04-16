@@ -61,8 +61,15 @@
 * @function setSong
 * @desc Stops currently playing song and loads new audio file as currentBuzzObject
 * @param {Object} song
-*/         
- SongPlayer.currentSong = null;
+**/         
+SongPlayer.currentSong = null;
+         
+/**
+* @desc Current playback time(in seconds) of currently playing song
+* @type {Number}
+**/
+
+SongPlayer.currentTime = null;
     
 SongPlayer.play = function(song) {
             song = song || SongPlayer.currentSong;
@@ -111,6 +118,17 @@ SongPlayer.next = function(){
     var song = currentAlbum.songs[currentSongIndex];
         setSong(song);
         playSong(song);
+};
+         
+/**
+* @function setCurrentTime
+* @desc Set current time (in seconds) of currently playing song
+* @param {Number} time
+**/
+SongPlayer.setCurrentTime = function(time){
+    if (currentBuzzObject){
+        currentBuzzObject.setTime(time);
+    }
 };
          
          return SongPlayer;
