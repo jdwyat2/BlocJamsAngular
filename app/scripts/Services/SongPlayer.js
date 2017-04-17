@@ -1,5 +1,5 @@
  (function() {
-     function SongPlayer(Fixtures) {
+     function SongPlayer($rootScope, Fixtures) {
           var SongPlayer = {};
           
           var currentAlbum = Fixtures.getAlbum();
@@ -36,6 +36,12 @@
              
              SongPlayer.currentSong = song;
          };
+         
+currentBuzzObject.bind('timeupdate',function(){
+    $rootScope.$apply(function(){
+        SongPlayer.currentTime = currentBuzzObject.getTime();
+    });
+});
    
 /*
 * @function getSongIndex
@@ -136,5 +142,5 @@ SongPlayer.setCurrentTime = function(time){
  
      angular
          .module('blocJams')
-         .factory('SongPlayer', ['Fixtures', SongPlayer]);
+         .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
  })();
